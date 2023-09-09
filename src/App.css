@@ -6,6 +6,50 @@
   height: 40vmin;
   pointer-events: none;
 }
+.Showproduct_heading {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.navbar .nav-link {
+  color: white;
+}
+.navbar .cart-Item {
+  margin-left: auto;
+}
+.myCart {
+  position: fixed;
+  top: 55px;
+  right: 0;
+  width: 400px;
+  height: 560px;
+  z-index: 33;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.myCart h3 {
+  text-align: left;
+}
+.myCart .flexheader-myCart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.myCart .flexitems {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.heading-myCart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

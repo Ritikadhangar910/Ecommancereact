@@ -1,7 +1,9 @@
+import "../App.css";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
+import Card from "react-bootstrap/Card";
+
 const Showproducts = () => {
   const productsArr = [
     {
@@ -42,14 +44,18 @@ const Showproducts = () => {
   ];
   return (
     <>
-      <h2>Showproducts</h2>
+      <h2 className="Showproduct_heading">Showproducts</h2>
       <Container>
         <Row>
           {productsArr.map((item) => (
             <Col xs={6} md={4} key={item.title}>
-              <p>{item.title}</p>
-              <p>{item.price}</p>
-              <Image src={item.imageUrl} rounded />
+              <Card className="mb-3" style={{ width: "19rem" }}>
+                <Card.Img variant="top" src={item.imageUrl} />
+                <Card.Body>
+                  <Card.Title>{item.title}</Card.Title>
+                  <Card.Text>${item.price}</Card.Text>
+                </Card.Body>
+              </Card>
             </Col>
           ))}
         </Row>

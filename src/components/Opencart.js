@@ -36,7 +36,7 @@ const Opencart = (props) => {
     <>
       {ReactDOM.createPortal(
         <div className="myCart">
-          <div className="flexheader-myCart">
+          <div className="front-each-other">
             <h3>Cart</h3>
             <Button
               variant="outline-warning"

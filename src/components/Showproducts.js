@@ -1,10 +1,14 @@
 import "../App.css";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
+import { useContext } from "react";
+import CreateContext from "../store/create-context";
 
 const Showproducts = () => {
+  const createContext = useContext(CreateContext);
   const productsArr = [
     {
       title: "Colors",
@@ -42,6 +46,13 @@ const Showproducts = () => {
         "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
     },
   ];
+  function Itemadded(title) {
+    let product = productsArr.filter((item) => {
+      return item.title === title;
+    });
+
+    createContext.addItems(product[0]);
+  }
   return (
     <>
       <h2 className="Showproduct_heading">Showproducts</h2>
@@ -53,7 +64,17 @@ const Showproducts = () => {
                 <Card.Img variant="top" src={item.imageUrl} />
                 <Card.Body>
                   <Card.Title>{item.title}</Card.Title>
-                  <Card.Text>${item.price}</Card.Text>
+                  <div className="front-each-other">
+                    <Card.Text>${item.price}</Card.Text>
+                    <Button
+                      variant="primary"
+                      onClick={() => {
+                        Itemadded(item.title);
+                      }}
+                    >
+                      Add To Cart
+                    </Button>
+                  </div>
                 </Card.Body>
               </Card>
             </Col>

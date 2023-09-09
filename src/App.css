@@ -29,10 +29,14 @@
   padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+.button-gap {
+  margin-right: 10px;
+}
+
 .myCart h3 {
   text-align: left;
 }
-.myCart .flexheader-myCart {
+.front-each-other {
   display: flex;
   justify-content: space-between;
   align-items: center;

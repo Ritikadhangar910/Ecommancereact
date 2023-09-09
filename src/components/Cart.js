@@ -1,19 +1,30 @@
 import Button from "react-bootstrap/Button";
 import "../App.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Opencart from "./Opencart";
+import CreateContext from "../store/create-context";
+
 const Cart = () => {
-  const [open, setopen] = useState(false);
+  let createContext = useContext(CreateContext);
+  createContext = createContext.items;
+  const [open, setOpen] = useState(false);
+
   function openCart() {
-    setopen(true);
+    setOpen(true);
   }
+  const btnvalue = createContext.length;
   return (
     <>
-      {open && <Opencart setopen={setopen} />}
-      <Button variant="info" onClick={openCart}>
-        Cart
-      </Button>
+      {open && <Opencart setopen={setOpen} />}
+      <div>
+        <Button variant="info" onClick={openCart}>
+          Cart
+        </Button>
+        <span className="button-gap"></span>
+        <Button variant="outline-info">{btnvalue}</Button>
+      </div>
     </>
   );
 };
+
 export default Cart;

@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "../App.css";
 import Cart from "./Cart";
+import { NavLink } from "react-router-dom";
 
 const MyNavbar = () => {
   return (
@@ -13,19 +14,19 @@ const MyNavbar = () => {
       <Container>
         <Nav className="mr-auto">
           <Nav.Item>
-            <Nav.Link href="/" className="nav-link">
+            <NavLink to="/" className="nav-link">
               Home
-            </Nav.Link>
+            </NavLink>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="/store" className="nav-link">
+            <NavLink to="/store" className="nav-link">
               Store
-            </Nav.Link>
+            </NavLink>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="/about" className="nav-link">
+            <NavLink to="/about" className="nav-link">
               About
-            </Nav.Link>
+            </NavLink>
           </Nav.Item>
         </Nav>
         <Cart />

@@ -15,6 +15,9 @@
 .navbar .nav-link {
   color: white;
 }
+.navbar-nav .nav-link.active {
+  color: #61dafb !important;
+}
 .navbar .cart-Item {
   margin-left: auto;
 }
@@ -72,6 +75,7 @@
   color: white;
 }
 .home-album h1 {
+  padding-top: 30px;
   font-size: 6rem;
 }
 .home-album h2 {
@@ -104,6 +108,26 @@
 .home-tour .arrtour button {
   margin-bottom: 10px;
   margin-left: 120px;
+}
+
+#formsection {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+#formsection h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+#formstyling {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+#formstyling button {
+  align-self: center;
 }
 
 @media (prefers-reduced-motion: no-preference) {

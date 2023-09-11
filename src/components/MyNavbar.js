@@ -7,10 +7,7 @@ import { NavLink } from "react-router-dom";
 
 const MyNavbar = () => {
   return (
-    <Navbar
-      defaultActiveKey="/"
-      className="sticky-top navbar-expand-lg navbar-dark bg-dark"
-    >
+    <Navbar className="sticky-top navbar navbar-expand-lg navbar-dark bg-dark">
       <Container>
         <Nav className="mr-auto">
           <Nav.Item>
@@ -26,6 +23,11 @@ const MyNavbar = () => {
           <Nav.Item>
             <NavLink to="/about" className="nav-link">
               About
+            </NavLink>
+          </Nav.Item>
+          <Nav.Item>
+            <NavLink to="/contact" className="nav-link">
+              Contact
             </NavLink>
           </Nav.Item>
         </Nav>

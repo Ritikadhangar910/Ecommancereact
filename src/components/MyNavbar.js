@@ -11,7 +11,7 @@ const MyNavbar = () => {
       <Container>
         <Nav className="mr-auto">
           <Nav.Item>
-            <NavLink to="/" className="nav-link">
+            <NavLink to="/" exact className="nav-link">
               Home
             </NavLink>
           </Nav.Item>

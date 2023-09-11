@@ -1,21 +1,19 @@
+import { useParams } from "react-router-dom";
 import "../App.css";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
-import { useContext } from "react";
-import CreateContext from "../store/create-context";
-import { Link } from "react-router-dom";
 
-const Showproducts = () => {
-  const createContext = useContext(CreateContext);
+const Productdetail = () => {
+  const params = useParams();
+  const segment = params.storeid;
   const productsArr = [
     {
       id: 1,
       title: "Colors",
-
-      price: 100,
+      name: "prerna",
+      review: "It is soo cheap and easy to use",
 
       imageUrl:
         "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
@@ -25,7 +23,8 @@ const Showproducts = () => {
       id: 2,
 
       title: "Black and white Colors",
-
+      name: "Suraj",
+      review: "price range is so high",
       price: 50,
 
       imageUrl:
@@ -36,6 +35,8 @@ const Showproducts = () => {
       id: 3,
 
       title: "Yellow and Black Colors",
+      name: "pavan",
+      review: "looks awesome and recommandable",
 
       price: 70,
 
@@ -47,55 +48,42 @@ const Showproducts = () => {
       id: 4,
 
       title: "Blue Color",
-
+      name: "satish",
+      review: "Product color is ok ok",
       price: 100,
 
       imageUrl:
         "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
     },
   ];
-  function Itemadded(title) {
-    let product = productsArr.filter((item) => {
-      return item.title === title;
-    });
-
-    createContext.addItems(product[0]);
-  }
-
+  const obj = productsArr.filter((item) => {
+    return item.id === +segment;
+  });
+  console.log(segment, obj);
   return (
-    <>
-      <h2 className="Showproduct_heading">Showproducts</h2>
+    <section className="productdetail">
+      <h2>Product Details</h2>
       <Container>
         <Row>
-          {productsArr.map((item) => (
+          {obj.map((item) => (
             <Col key={item.title}>
               <Card
-                className="mb-3"
+                className="mb-3 carddetail"
                 style={{ width: "16rem", cursor: "pointer" }}
               >
-                <Link to={`/store/${item.id}`}>
-                  <Card.Img variant="top" src={item.imageUrl} />
-                </Link>
+                <Card.Img variant="top" src={item.imageUrl} />
                 <Card.Body>
                   <Card.Title>{item.title}</Card.Title>
-                  <div className="front-each-other">
-                    <Card.Text>${item.price}</Card.Text>
-                    <Button
-                      variant="primary"
-                      onClick={() => {
-                        Itemadded(item.title);
-                      }}
-                    >
-                      Add To Cart
-                    </Button>
-                  </div>
+                  <div className="front-each-other"></div>
                 </Card.Body>
               </Card>
+              <h3>Name: {item.name} </h3>
+              <p>Review: {item.review} </p>
             </Col>
           ))}
         </Row>
       </Container>
-    </>
+    </section>
   );
 };
-export default Showproducts;
+export default Productdetail;

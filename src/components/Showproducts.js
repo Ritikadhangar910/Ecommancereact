@@ -6,9 +6,10 @@ import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import { useContext } from "react";
 import CreateContext from "../store/create-context";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Showproducts = () => {
+  const location = useLocation();
   const createContext = useContext(CreateContext);
   const productsArr = [
     {
@@ -73,7 +74,7 @@ const Showproducts = () => {
                 className="mb-3"
                 style={{ width: "16rem", cursor: "pointer" }}
               >
-                <Link to={`/store/${item.id}`}>
+                <Link to={`${location.pathname}/${item.id}`}>
                   <Card.Img variant="top" src={item.imageUrl} />
                 </Link>
                 <Card.Body>

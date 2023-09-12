@@ -117,20 +117,62 @@
   align-content: center;
   align-items: center;
 }
+#LoginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.loginform-styling {
+  border: 1px solid;
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #350b5c;
+  border: 1px solid #350b5c;
+  border-radius: 10px;
+  box-shadow: 14px 18px 18px rgba(0, 0, 0, 0.2);
+}
+.loginform-styling h2 {
+  text-align: center;
+  color: white;
+}
 
 #formsection h2 {
   text-align: center;
   margin-top: 20px;
 }
-#formstyling {
+#formstyling,
+#formstyling-form {
   width: 400px;
   display: flex;
   flex-direction: column;
 }
+#formstyling-form p {
+  color: white;
+}
 #formstyling button {
   align-self: center;
 }
-.productdetail h2 {
+#formstyling-form button {
+  align-self: center;
+  margin-top: 25px;
+  background-color: #9665ce;
+  border: #9665ce;
+}
+.goLink-auth {
+  display: flex;
+  justify-content: center;
+}
+.goLink-auth button {
+  background-color: #9665ce;
+  border: #9665ce;
+  margin-top: 25px;
+}
+.loginform-styling button:hover {
+  background-color: #a15fec !important;
+  border: #a15fec !important;
+}
+
+.loginform-styling .productdetail h2 {
   text-align: center;
   margin-top: 30px;
   margin-bottom: 30px;

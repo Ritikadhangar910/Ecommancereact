@@ -59,7 +59,6 @@ const Productdetail = () => {
   const obj = productsArr.filter((item) => {
     return item.id === +segment;
   });
-  console.log(segment, obj);
   return (
     <section className="productdetail">
       <h2>Product Details</h2>

@@ -1,4 +1,5 @@
 import About from "./components/About";
+import AuthForm from "./components/AuthForm";
 import Contact from "./components/Contact";
 import Home from "./components/Home";
 import MyNavbar from "./components/MyNavbar";
@@ -25,6 +26,9 @@ function App() {
         </Route>
         <Route path="/contact" exact>
           <Contact />
+        </Route>
+        <Route path="/auth" exact>
+          <AuthForm />
         </Route>
       </Switch>
     </ContextProvider>

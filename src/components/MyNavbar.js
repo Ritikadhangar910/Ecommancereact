@@ -30,6 +30,11 @@ const MyNavbar = () => {
               Contact
             </NavLink>
           </Nav.Item>
+          <Nav.Item>
+            <NavLink to="/auth" className="nav-link">
+              Login
+            </NavLink>
+          </Nav.Item>
         </Nav>
         <Cart />
       </Container>

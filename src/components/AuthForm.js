@@ -14,37 +14,39 @@ const AuthForm = () => {
       return !prev;
     });
   }
-  function userAuthntication(e) {
+  async function userAuthntication(e) {
     e.preventDefault();
+    let authurl;
+    setloading(true);
     if (isloggin) {
+      authurl =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAoKVBtv4adgpg6dWlO3FNtEW2brYblq3Y";
     } else {
-      setloading(true);
-      fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAoKVBtv4adgpg6dWlO3FNtEW2brYblq3Y",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            email: email,
-            password: phone,
-            returnSecureToken: true,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      ).then((res) => {
-        setloading(false);
-        if (res.ok) {
-        } else {
-          res.json().then((data) => {
-            let errormessage = "Authentication failed";
-            if (data && data.error && data.error.code) {
-              errormessage = data.error.message;
-            }
-            seterr(errormessage);
-          });
-        }
-      });
+      authurl =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAoKVBtv4adgpg6dWlO3FNtEW2brYblq3Y";
+    }
+    let res = await fetch(authurl, {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: phone,
+        returnSecureToken: true,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    setloading(false);
+    if (res.ok) {
+      let data = await res.json();
+      console.log(data);
+    } else {
+      let data = await res.json();
+      let errormessage = "Authentication failed";
+      if (data && data.error && data.error.code) {
+        errormessage = data.error.message;
+      }
+      seterr(errormessage);
     }
   }
 

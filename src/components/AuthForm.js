@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
+import CreateContext from "../store/create-context";
 const AuthForm = () => {
   const [email, setemail] = useState("");
   const [phone, setphone] = useState("");
   const [isloggin, setLoggin] = useState(false);
   const [loading, setloading] = useState(false);
   const [err, seterr] = useState(null);
+  const createContext = useContext(CreateContext);
   function changeLogginFun(e) {
     e.preventDefault();
     setLoggin((prev) => {
@@ -39,7 +41,7 @@ const AuthForm = () => {
     setloading(false);
     if (res.ok) {
       let data = await res.json();
-      console.log(data);
+      createContext.login(data.idToken);
     } else {
       let data = await res.json();
       let errormessage = "Authentication failed";

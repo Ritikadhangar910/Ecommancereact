@@ -2,7 +2,6 @@ import About from "./components/About";
 import AuthForm from "./components/AuthForm";
 import Contact from "./components/Contact";
 import Home from "./components/Home";
-import Logout from "./components/Logout";
 import MyNavbar from "./components/MyNavbar";
 import Productdetail from "./components/Productdetail";
 import Showproducts from "./components/Showproducts";
@@ -30,9 +29,6 @@ function App() {
         </Route>
         <Route path="/auth" exact>
           <AuthForm />
-        </Route>
-        <Route path="/logout" exact>
-          <Logout />
         </Route>
       </Switch>
     </ContextProvider>

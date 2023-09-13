@@ -1,14 +1,19 @@
 import React, { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import "../App.css";
 import Cart from "./Cart";
 import { NavLink } from "react-router-dom";
 import CreateContext from "../store/create-context";
-
+import { useHistory } from "react-router-dom";
 const MyNavbar = () => {
   const createcontext = useContext(CreateContext);
   let isLoggedIn = createcontext.isLoggedIn;
+  const history = useHistory();
+  function LogoutUser() {
+    createcontext.logout();
+    history.replace("/auth");
+  }
   return (
     <Navbar className="sticky-top navbar navbar-expand-lg navbar-dark bg-dark">
       <Container>
@@ -36,9 +41,9 @@ const MyNavbar = () => {
                 </NavLink>
               </Nav.Item>
               <Nav.Item>
-                <NavLink to="/logout" className="nav-link">
+                <Button variant="primary" type="submit" onClick={LogoutUser}>
                   Logout
-                </NavLink>
+                </Button>
               </Nav.Item>
             </>
           ) : (

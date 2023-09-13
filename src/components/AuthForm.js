@@ -44,7 +44,7 @@ const AuthForm = () => {
     if (res.ok) {
       let data = await res.json();
       createContext.login(data.idToken);
-      history.replace("/");
+      history.replace("/store");
     } else {
       let data = await res.json();
       let errormessage = "Authentication failed";

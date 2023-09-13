@@ -11,17 +11,31 @@ import ContextProvider from "./store/Contextprovider";
 import { Route, Switch } from "react-router-dom";
 import CreateContext from "./store/create-context";
 function App() {
-  // const createcontext = useContext(CreateContext);
-  const storeToken = localStorage.getItem("token");
+  function checkLocalStorage() {
+    let item = localStorage.getItem("item");
+    if (!item) {
+      return null;
+    }
+    const now = new Date();
+    item = JSON.parse(item);
+    if (now.getTime() > item.expire) {
+      localStorage.removeItem("item");
+      return null;
+    } else {
+      return item.token;
+    }
+  }
+  const expiredTime = checkLocalStorage();
+
   return (
     <ContextProvider>
       <MyNavbar />
       <Switch>
         <Route path="/" exact>
-          {storeToken ? <Home /> : <AuthForm />}
+          {expiredTime ? <Home /> : <AuthForm />}
         </Route>
 
-        {storeToken ? (
+        {expiredTime ? (
           <>
             <Route path="/store" exact>
               <Showproducts />

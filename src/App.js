@@ -35,26 +35,24 @@ function App() {
           {expiredTime ? <Home /> : <AuthForm />}
         </Route>
 
-        {expiredTime ? (
-          <>
-            <Route path="/store" exact>
-              <Showproducts />
-            </Route>
-            <Route path="/store/:storeid" exact>
-              <Productdetail />
-            </Route>
-            <Route path="/about" exact>
-              <About />
-            </Route>
-            <Route path="/contact" exact>
-              <Contact />
-            </Route>
-          </>
-        ) : (
+        <Route path="/store" exact>
+          {expiredTime ? <Showproducts /> : <AuthForm />}
+        </Route>
+        <Route path="/store/:storeid" exact>
+          {expiredTime ? <Productdetail /> : <AuthForm />}
+        </Route>
+        <Route path="/about" exact>
+          {expiredTime ? <About /> : <AuthForm />}
+        </Route>
+        <Route path="/contact" exact>
+          {expiredTime ? <Contact /> : <AuthForm />}
+        </Route>
+        {!expiredTime && (
           <Route path="/auth" exact>
             <AuthForm />
           </Route>
         )}
+
         <Route path="*">
           <NotFound />
         </Route>

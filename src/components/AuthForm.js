@@ -3,7 +3,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import CreateContext from "../store/create-context";
+import { useHistory } from "react-router-dom";
 const AuthForm = () => {
+  const history = useHistory();
   const [email, setemail] = useState("");
   const [phone, setphone] = useState("");
   const [isloggin, setLoggin] = useState(false);
@@ -42,6 +44,7 @@ const AuthForm = () => {
     if (res.ok) {
       let data = await res.json();
       createContext.login(data.idToken);
+      history.replace("/");
     } else {
       let data = await res.json();
       let errormessage = "Authentication failed";
@@ -77,10 +80,10 @@ const AuthForm = () => {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPhone">
-              <Form.Label>Phone No.</Form.Label>
+              <Form.Label>Password</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter phone number"
+                placeholder="Enter password"
                 value={phone}
                 onChange={(e) => {
                   setphone(e.target.value);

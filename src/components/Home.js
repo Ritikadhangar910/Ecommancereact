@@ -1,55 +1,51 @@
+import { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import CreateContext from "../store/create-context";
+import { useHistory } from "react-router-dom";
 const Home = () => {
-  const arrtour = [
-    {
-      mounth: "JUL16",
-      state: "DETROIT, MI",
-      region: "DTE ENERGY MUSIC THEATRE",
-    },
-    {
-      mounth: "JUL19",
-      state: "TORONTO,ON",
-      region: "BUDWEISER STAGE",
-    },
-    {
-      mounth: "JUN22",
-      state: "BRISTOW, VA",
-      region: "JIGGY LUBE LIVE",
-    },
-    {
-      mounth: "JUL29",
-      state: "PHOENIX, AZ",
-      region: "AK-CHIN PAVILION",
-    },
-    {
-      mounth: "AUG2",
-      state: "LAS VEGAS, NV",
-      region: "T-MOBILE ARENA",
-    },
-    {
-      mounth: "AUG7",
-      state: "CONCORD, CA",
-      region: "CONCORD PAVILION",
-    },
-  ];
+  const history = useHistory();
+  const [password, setpassword] = useState("");
+  const createContext = useContext(CreateContext);
+  async function ForgetPassword() {
+    let response = await fetch(
+      "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyAoKVBtv4adgpg6dWlO3FNtEW2brYblq3Y",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          idToken: createContext.token,
+          password: password,
+          returnSecureToken: false,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    response = await response.json();
+    if (response) history.replace("/store");
+  }
   return (
     <>
       <section>
         <div className="home-album">
-          <h1>The Generics</h1>
-          <h2>Get our Latest Album</h2>
-          <p>Try This</p>
-        </div>
-        <div className="home-tour">
-          <h3>Tour</h3>
-          {arrtour.map((item) => (
-            <div className="arrtour" key={item.mounth}>
-              <p>{item.mounth}</p>
-              <p>{item.state}</p>
-              <p>{item.region}</p>
-              <Button variant="primary">BUY TICKETS</Button>
-            </div>
-          ))}
+          <h1>Your User Profile</h1>
+          <h2>New Password</h2>
+          <Form.Group className="mb-3" controlId="formBasicPhone">
+            <Form.Control
+              type="text"
+              placeholder="Enter password"
+              className="form-control"
+              value={password}
+              onChange={(e) => {
+                setpassword(e.target.value);
+              }}
+            />
+          </Form.Group>
+
+          <Button className="primary" onClick={ForgetPassword}>
+            Change Password
+          </Button>
         </div>
       </section>
     </>

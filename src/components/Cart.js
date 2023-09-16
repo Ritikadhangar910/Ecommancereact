@@ -5,14 +5,16 @@ import Opencart from "./Opencart";
 import CreateContext from "../store/create-context";
 
 const Cart = () => {
-  let createContext = useContext(CreateContext);
-  createContext = createContext.items;
   const [open, setOpen] = useState(false);
-
+  const createcontext = useContext(CreateContext);
   function openCart() {
     setOpen(true);
   }
-  const btnvalue = createContext.length;
+  let quantity = 0;
+  for (const item of createcontext.item) {
+    quantity += item.quantity;
+  }
+
   return (
     <>
       {open && <Opencart setopen={setOpen} />}
@@ -21,7 +23,7 @@ const Cart = () => {
           Cart
         </Button>
         <span className="button-gap"></span>
-        <Button variant="outline-info">{btnvalue}</Button>
+        <Button variant="outline-info">{quantity}</Button>
       </div>
     </>
   );

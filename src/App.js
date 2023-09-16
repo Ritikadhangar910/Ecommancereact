@@ -7,34 +7,19 @@ import MyNavbar from "./components/MyNavbar";
 import NotFound from "./components/NotFound";
 import Productdetail from "./components/Productdetail";
 import Showproducts from "./components/Showproducts";
-import ContextProvider from "./store/Contextprovider";
 import { Route, Switch } from "react-router-dom";
 import CreateContext from "./store/create-context";
 function App() {
-  function checkLocalStorage() {
-    let item = localStorage.getItem("item");
-    if (!item) {
-      return null;
-    }
-    const now = new Date();
-    item = JSON.parse(item);
-    if (now.getTime() > item.expire) {
-      localStorage.removeItem("item");
-      return null;
-    } else {
-      return item.token;
-    }
-  }
-  const expiredTime = checkLocalStorage();
-
+  const createcontext = useContext(CreateContext);
+  const expiredTime = createcontext.isLoggedIn;
+  console.log(createcontext.item);
   return (
-    <ContextProvider>
+    <>
       <MyNavbar />
       <Switch>
         <Route path="/" exact>
           {expiredTime ? <Home /> : <AuthForm />}
         </Route>
-
         <Route path="/store" exact>
           {expiredTime ? <Showproducts /> : <AuthForm />}
         </Route>
@@ -57,7 +42,7 @@ function App() {
           <NotFound />
         </Route>
       </Switch>
-    </ContextProvider>
+    </>
   );
 }
 

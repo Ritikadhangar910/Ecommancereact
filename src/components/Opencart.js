@@ -1,37 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react-dom";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
-
+import CreateContext from "../store/create-context";
 const portalElement = document.getElementById("overlays");
 
 const Opencart = (props) => {
-  const cartElements = [
-    {
-      title: "Album1",
-      price: 100,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-      quantity: 2,
-    },
-    {
-      title: "Album2",
-      price: 50,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-      quantity: 3,
-    },
-    {
-      title: "Album3",
-      price: 70,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-      quantity: 1,
-    },
-  ];
+  const createContext = useContext(CreateContext);
   function closeCart() {
     props.setopen(false);
   }
+  function removeItemCart(id) {
+    createContext.removeItems(id);
+  }
+  let multiplyItemsandPrice = 0;
+  for (const item of createContext.item) {
+    multiplyItemsandPrice += +item.price * item.quantity;
+  }
+
   return (
     <>
       {ReactDOM.createPortal(
@@ -51,7 +37,7 @@ const Opencart = (props) => {
             <h4>Price</h4>
             <h4>Quantity</h4>
           </div>
-          {cartElements.map((item) => (
+          {createContext.item.map((item) => (
             <div className="flexitems" key={item.title}>
               <div>
                 <Image
@@ -66,12 +52,20 @@ const Opencart = (props) => {
               <div>{item.price}</div>
               <div>
                 <span>
-                  <Button variant="outline-warning">1</Button>
-                  <Button variant="danger">Remove</Button>
+                  <Button variant="outline-warning">{item.quantity}</Button>
+                  <Button
+                    variant="danger"
+                    onClick={() => {
+                      removeItemCart(item.id);
+                    }}
+                  >
+                    Remove
+                  </Button>
                 </span>
               </div>
             </div>
           ))}
+          <h3>Total Price : {multiplyItemsandPrice} </h3>
         </div>,
         portalElement
       )}

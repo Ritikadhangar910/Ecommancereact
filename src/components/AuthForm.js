@@ -43,7 +43,7 @@ const AuthForm = () => {
     setloading(false);
     if (res.ok) {
       let data = await res.json();
-      createContext.login(data.idToken);
+      createContext.login(data.idToken, data.email);
       history.replace("/store");
     } else {
       let data = await res.json();

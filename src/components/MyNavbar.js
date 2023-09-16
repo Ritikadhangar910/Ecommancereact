@@ -9,7 +9,6 @@ import { useHistory } from "react-router-dom";
 const MyNavbar = () => {
   const createcontext = useContext(CreateContext);
   let isLoggedIn = createcontext.isLoggedIn;
-  console.log("navbar", createcontext.isLoggedIn);
   const history = useHistory();
   function LogoutUser() {
     createcontext.logout();

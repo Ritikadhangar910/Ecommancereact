@@ -4,18 +4,19 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import CreateContext from "../store/create-context";
 import { Link, useLocation } from "react-router-dom";
 
 const Showproducts = () => {
   const location = useLocation();
   const createContext = useContext(CreateContext);
+
   const productsArr = [
     {
       id: 1,
       title: "Colors",
-
+      quantity: 1,
       price: 100,
 
       imageUrl:
@@ -26,6 +27,7 @@ const Showproducts = () => {
       id: 2,
 
       title: "Black and white Colors",
+      quantity: 1,
 
       price: 50,
 
@@ -37,6 +39,7 @@ const Showproducts = () => {
       id: 3,
 
       title: "Yellow and Black Colors",
+      quantity: 1,
 
       price: 70,
 
@@ -48,6 +51,7 @@ const Showproducts = () => {
       id: 4,
 
       title: "Blue Color",
+      quantity: 1,
 
       price: 100,
 
@@ -55,14 +59,12 @@ const Showproducts = () => {
         "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
     },
   ];
-  function Itemadded(title) {
-    let product = productsArr.filter((item) => {
-      return item.title === title;
+  function Itemadded(id) {
+    const myobj = productsArr.filter((item) => {
+      return item.id === id;
     });
-
-    createContext.addItems(product[0]);
+    createContext.addItems(myobj[0]);
   }
-
   return (
     <>
       <h2 className="Showproduct_heading">Showproducts</h2>
@@ -84,7 +86,7 @@ const Showproducts = () => {
                     <Button
                       variant="primary"
                       onClick={() => {
-                        Itemadded(item.title);
+                        Itemadded(item.id);
                       }}
                     >
                       Add To Cart
